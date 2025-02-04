@@ -24,6 +24,9 @@ When you set a DNS record to **Proxied**, Cloudflare can:
 - [Optimize, cache, and protect](/fundamentals/setup/manage-domains/connect-your-domain/#domain-configurations) all requests to your application.
 - Apply your configurations for a variety of Cloudflare products.
 
+:::caution
+When you [add a domain](/fundamentals/setup/manage-domains/add-site/) to Cloudflare, Cloudflare protection will be in a [pending state](/dns/zone-setups/reference/domain-status/) until we can verify ownership. This could take up to 24 hours to complete. Refer to [Limitations](/dns/proxy-status/limitations/#pending-domains) for further guidance.
+:::
 
 ### Example
 
@@ -40,7 +43,7 @@ For further context, refer to [How Cloudflare works](/fundamentals/concepts/how-
 
 ## Proxied records
 
-The sections below describe specific behaviors and expected outcomes when you have DNS records set to <GlossaryTooltip term="proxy status">proxied</GlossaryTooltip>.
+The sections below describe specific behaviors and expected outcomes when you have DNS records set to <GlossaryTooltip term="proxy status">proxied</GlossaryTooltip>. There may also be some [Limitations](/dns/proxy-status/limitations/) in specific scenarios.
 
 ### Predefined time to live
 
@@ -80,10 +83,6 @@ For proxied records, if your domain has [HTTP/2 or HTTP/3 enabled](/speed/optimi
 :::note
 Both HTTP/2 and HTTP/3 configurations also require that you have an SSL/TLS certificate served by Cloudflare. This means that disabling [Universal SSL](/ssl/edge-certificates/universal-ssl/), for example, could impact this behavior.
 :::
-
-## Limitations
-
-<Render file="limitations" product="dns" />
 
 ---
 
