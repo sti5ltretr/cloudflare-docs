@@ -13,7 +13,7 @@ While your [DNS records](/dns/manage-dns-records/) are used to make your website
 The records you can proxy through Cloudflare are [IP address resolution records](/dns/manage-dns-records/reference/dns-record-types/#ip-address-resolution) — meaning A, AAAA, or CNAME records. Cloudflare recommends setting to proxied all A, AAAA, and CNAME records that are used for serving web traffic.
 
 :::note
-Proxying is on by default (for the applicable records) when you onboard a domain via the dashboard.
+Proxying is on by default when you onboard a domain via the dashboard.
 :::
 
 ### Benefits
@@ -24,7 +24,17 @@ When you set a DNS record to **Proxied**, Cloudflare can:
 - [Optimize, cache, and protect](/fundamentals/setup/manage-domains/connect-your-domain/#domain-configurations) all requests to your application.
 - Apply your configurations for a variety of Cloudflare products.
 
-To understand how Cloudflare responds to requests for proxied records, refer to [How Cloudflare works](/fundamentals/concepts/how-cloudflare-works/).
+
+### Example
+
+<Render file="proxy-status-dns-table" />
+
+This means that:
+
+- an HTTP/HTTPS request to the proxied record `blog.example.com` will be answered with a Cloudflare [anycast IP address](/fundamentals/concepts/cloudflare-ip-addresses/) instead of `192.0.2.1`, which allows the [benefits listed above](#benefits) to take place.
+- an HTTP/HTTPS request to the DNS-only record `shop.example.com` will be answered with the actual origin IP address, `192.0.2.2`. In addition to exposing your origin IP address and not benefitting from several features, Cloudflare cannot provide analytics on those requests.
+
+For further context, refer to [How Cloudflare works](/fundamentals/concepts/how-cloudflare-works/).
 
 ---
 
@@ -50,7 +60,7 @@ Both HTTP/2 and HTTP/3 configurations also require that you have an SSL/TLS cert
 
 ## DNS-only records
 
-When an `A`, `AAAA`, or `CNAME` record is **DNS-only** — also known as being gray-clouded — DNS queries for these will resolve to the record's normal IP address.
+When an A, AAAA, or CNAME record is **DNS-only** — also known as being gray-clouded — DNS queries for these will resolve to the record's normal IP address, as described in the [example](#example).
 
 <Render file="mix-proxied-and-unproxied" product="dns" />
 
