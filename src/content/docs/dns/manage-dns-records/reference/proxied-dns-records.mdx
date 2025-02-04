@@ -42,8 +42,6 @@ For further context, refer to [How Cloudflare works](/fundamentals/concepts/how-
 
 <Render file="mix-proxied-and-unproxied" product="dns" />
 
-<Render file="proxied-records-definition" product="dns" />
-
 ### Protocol optimization
 
 For proxied records, if your domain has [HTTP/2 or HTTP/3 enabled](/speed/optimization/protocol/), Cloudflare automatically generates corresponding [HTTPS Service (HTTPS) records](/dns/manage-dns-records/reference/dns-record-types/#svcb-and-https) on the fly. HTTPS records allow you to provide a client with information about how it should connect to a server upfront, without the need of an initial plaintext HTTP connection.
