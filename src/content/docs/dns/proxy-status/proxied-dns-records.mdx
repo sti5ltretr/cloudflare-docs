@@ -10,7 +10,9 @@ import { Render, Example, Details, GlossaryTooltip } from "~/components";
 
 While your [DNS records](/dns/manage-dns-records/) are used to make your website or application available to visitors and other web services, the **Proxy status** of a DNS record is used to define how Cloudflare treats incoming traffic to that record.
 
-The records you can proxy through Cloudflare are [IP address resolution records](/dns/manage-dns-records/reference/dns-record-types/#ip-address-resolution) — meaning A, AAAA, or CNAME records. Cloudflare recommends setting to proxied all A, AAAA, and CNAME records that are used for serving web traffic.
+The records you can proxy through Cloudflare are [IP resolution records](/dns/manage-dns-records/reference/dns-record-types/#ip-address-resolution) — meaning A, AAAA, or CNAME records.
+
+Cloudflare recommends setting to proxied all A, AAAA, and CNAME records that are used for serving web traffic. For example, CNAME records being used to verify your domain for a third-party service should not be proxied.
 
 :::note
 Proxying is on by default when you onboard a domain via the dashboard.
