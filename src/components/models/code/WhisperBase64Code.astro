@@ -24,7 +24,7 @@ export default {
 
         const mp3 = await fetch(URL);
         if (!mp3.ok) {
-      throw new Error('Response status from mp3');
+      throw new Error('Response error from mp3');
     }
         const mp3Buffer = await mp3.arrayBuffer();
         const base64 = Buffer.from(mp3Buffer, 'binary').toString("base64");
