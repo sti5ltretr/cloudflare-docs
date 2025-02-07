@@ -1,0 +1,54 @@
+---
+pcx_content_type: concept
+title: Resource Provisioning
+description: Automatically provision Cloudflare resources when deploying your Worker with bindings. 
+sidebar:
+  badge:
+    text: Beta
+---
+
+# Resource Provisioning
+You can now automatically provision Cloudflare resources as part of your deployment.  Without this, you need to separately manually create any resouces that do not yet exist on your account prior to deploying. 
+
+With resource provisioning, if your Wrangler configuration file includes a [KV namespace](/kv/), [D1 database](/d1/), or [R2 bucket](/r2/) that does not yet exist, Wrangler will create these resources upon deployment. This is done by adding the experimental `–x-provision` flag to your commands. 
+
+## Wrangler Configuration 
+You can set up your Wrangler configuration file like the following: 
+```json
+{
+  "kv_namespaces": [
+    {
+      "binding": "MY_KV"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "MY_R2"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "MY_D1"
+    }
+  ]
+}
+```
+When using the experimental `–x-provision` flag, the `id` field for KV and D1 and the `bucket_name` for R2 are optional in your wrangler configuration. 
+
+## Developing locally and deploying
+When developing locally, you can interact with local versions of any KV, D1, R2 resources configured in your Wrangler configuration file by running:
+
+```sh
+npx wrangler dev –x-provision
+```
+
+When you're ready to deploy, run: 
+
+```sh
+npx wrangler deploy –x-provision
+```
+
+Upon deploy Wrangler will automatically create the resources that do not yet exist on your accound and bind them to your Worker. The newly created resource will be named with the format `<worker-name>-<binding-name>` by default.
+
+## Feedback 
+Resource provisiong is currently a beta feature. If you run into issues or would like to leave feedback for the team to help us improve, please send us a message in our [Cloudflare Developers Discord](https://discord.cloudflare.com/) in the [Wrangler channel](https://discord.com/channels/595317990191398933/799437470004412476).
